@@ -31,10 +31,15 @@ public class TitaniumCrashlyticsModule extends KrollModule
 	public TitaniumCrashlyticsModule()
 	{
 		super();
-		Fabric.with(TiApplication.getAppRootOrCurrentActivity(), new Crashlytics());
 	}
 
 	// Methods
+
+	@Kroll.method
+	public void start()
+	{
+		Fabric.with(TiApplication.getAppRootOrCurrentActivity(), new Crashlytics());		
+	}
 
 	@Kroll.method
 	public void crash()

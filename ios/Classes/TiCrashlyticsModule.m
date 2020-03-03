@@ -32,16 +32,14 @@
 - (void)_configure
 {
   [super _configure];
-  [[TiApp app] registerApplicationDelegate:self];
-}
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-  [Fabric with:@[ [Crashlytics class] ]];
-  return YES;
 }
 
 #pragma Public APIs
+
+-(void)start:(id)unused
+{
+  [Fabric with:@[ [Crashlytics class] ]];
+}
 
 - (void)crash:(id)unused
 {

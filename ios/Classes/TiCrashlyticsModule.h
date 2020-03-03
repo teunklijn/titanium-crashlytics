@@ -11,6 +11,8 @@
 
 }
 
+-(void)init:(id)start;
+
 /**
  *  The easiest way to cause a crash - great for testing!
  *
