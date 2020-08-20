@@ -16,8 +16,7 @@ import org.appcelerator.titanium.TiApplication;
 
 import android.app.Activity;
 
-import com.crashlytics.android.Crashlytics;
-import io.fabric.sdk.android.Fabric;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 @Kroll.module(name="TitaniumCrashlytics", id="ti.crashlytics")
 public class TitaniumCrashlyticsModule extends KrollModule
@@ -34,23 +33,16 @@ public class TitaniumCrashlyticsModule extends KrollModule
 	}
 
 	// Methods
-
-	@Kroll.method
-	public void start()
+	@Kroll.setProperty
+	public void setEnabled(boolean enabled)
 	{
-		Fabric.with(TiApplication.getAppRootOrCurrentActivity(), new Crashlytics());		
+		FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(enabled);
 	}
 
 	@Kroll.method
 	public void crash()
 	{
-		Crashlytics.getInstance().crash();
-	}
-
-	@Kroll.method
-	public void log(String message)
-	{
-		Crashlytics.log(message);
+		throw new RuntimeException("This is a crash");
 	}
 
 	@Kroll.method
@@ -59,23 +51,19 @@ public class TitaniumCrashlyticsModule extends KrollModule
 		try {
 			throw new RuntimeException("This is a crash");
 		} catch (RuntimeException e) {
-			Crashlytics.logException(e);
+			FirebaseCrashlytics.getInstance().recordException(e);
 		}
 	}
 
-	@Kroll.setProperty
-	public void setUserIdentifier(String userIdentifier) {
-		Crashlytics.setUserIdentifier(userIdentifier);
+	@Kroll.method
+	public void log(String message)
+	{
+		FirebaseCrashlytics.getInstance().log(message);
 	}
 
 	@Kroll.setProperty
-	public void setUserName(String userName) {
-		Crashlytics.setUserName(userName);
-	}
-
-	@Kroll.setProperty
-	public void setUserEmail(String userEmail) {
-		Crashlytics.setUserEmail(userEmail);
+	public void setUserId(String userIdentifier) {
+		FirebaseCrashlytics.getInstance().setUserId(userIdentifier);
 	}
 }
 

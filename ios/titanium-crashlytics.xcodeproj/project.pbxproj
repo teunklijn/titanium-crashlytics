@@ -28,8 +28,7 @@
 		24DE9E1211C5FE74003F90F6 /* TiCrashlyticsModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* TiCrashlyticsModuleAssets.m */; };
 		AA747D9F0F9514B9006C5449 /* TiCrashlytics_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiCrashlytics_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
-		DB6F8578210493BC008216AE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6F8576210493BC008216AE /* Crashlytics.framework */; };
-		DB6F8579210493BC008216AE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6F8577210493BC008216AE /* Fabric.framework */; };
+		B445F96A24EC15B000C4795C /* FirebaseCrashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B445F96924EC15B000C4795C /* FirebaseCrashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,9 +51,8 @@
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B404F356240E90D400AC0344 /* module.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = module.xcconfig; sourceTree = "<group>"; };
 		B404F357240E90F100AC0344 /* manifest */ = {isa = PBXFileReference; lastKnownFileType = text; path = manifest; sourceTree = "<group>"; };
+		B445F96924EC15B000C4795C /* FirebaseCrashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCrashlytics.framework; path = platform/FirebaseCrashlytics.framework; sourceTree = "<group>"; };
 		D2AAC07E0554694100DB518D /* libti.crashlytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libti.crashlytics.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB6F8576210493BC008216AE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = platform/Crashlytics.framework; sourceTree = "<group>"; };
-		DB6F8577210493BC008216AE /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = platform/Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB6F8578210493BC008216AE /* Crashlytics.framework in Frameworks */,
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
-				DB6F8579210493BC008216AE /* Fabric.framework in Frameworks */,
+				B445F96A24EC15B000C4795C /* FirebaseCrashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,8 +90,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DB6F8576210493BC008216AE /* Crashlytics.framework */,
-				DB6F8577210493BC008216AE /* Fabric.framework */,
+				B445F96924EC15B000C4795C /* FirebaseCrashlytics.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
 			);
 			name = Frameworks;

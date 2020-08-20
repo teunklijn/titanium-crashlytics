@@ -12,8 +12,7 @@
 #import "TiHost.h"
 #import "TiUtils.h"
 
-#import <Crashlytics/Crashlytics.h>
-#import <Fabric/Fabric.h>
+#import <FirebaseCrashlytics/FirebaseCrashlytics.h>
 
 @implementation TiCrashlyticsModule
 
@@ -36,61 +35,44 @@
 
 #pragma Public APIs
 
--(void)start:(id)unused
-{
-  [Fabric with:@[ [Crashlytics class] ]];
-}
-
 - (void)crash:(id)unused
 {
-  [[Crashlytics sharedInstance] crash];
+  @[][1];
 }
 
 - (void)setUserIdentifier:(id)userIdentifier
 {
   ENSURE_SINGLE_ARG(userIdentifier, NSString);
-  [[Crashlytics sharedInstance] setUserIdentifier:userIdentifier];
+  [[FIRCrashlytics crashlytics] setUserID:userIdentifier];
 }
 
-- (void)setUserName:(id)userName
+- (void)log:(id)log
 {
-  ENSURE_SINGLE_ARG(userName, NSString);
-  [[Crashlytics sharedInstance] setUserName:userName];
-}
-
-- (void)setUserEmail:(id)userEmail
-{
-  ENSURE_SINGLE_ARG(userEmail, NSString);
-  [[Crashlytics sharedInstance] setUserEmail:userEmail];
-}
-
-- (void)log:(NSArray *)args
-{
-  [Answers logCustomEventWithName:args[0] customAttributes:args.count > 1 ? args[1] : nil];
+  ENSURE_SINGLE_ARG(log, NSString);  
+  [[FIRCrashlytics crashlytics] log:log];
 }
 
 - (void)recordCustomException:(id)params
 {
-
   ENSURE_SINGLE_ARG(params, NSDictionary);
   NSString *name = params[@"name"];
   NSString *reason = params[@"reason"];
   NSArray *frames = params[@"frames"];
-
-  NSMutableArray<CLSStackFrame *> *frameArray = [NSMutableArray arrayWithCapacity:frames.count];
-
+  
+  FIRExceptionModel *model = [[FIRExceptionModel alloc] initWithName:name reason:reason];
+  
+  NSMutableArray<FIRStackFrame *> *frameArray = [NSMutableArray arrayWithCapacity:frames.count];
   for (NSString *frame in frames) {
-    [frameArray addObject:[CLSStackFrame stackFrameWithSymbol:frame]];
+    // TODO: expose FIRStackFrame?
+    [frameArray addObject:[FIRStackFrame stackFrameWithSymbol:frame file:@"main.js" line:0]];
   }
-
-  [[Crashlytics sharedInstance] recordCustomExceptionName:name
-                                                   reason:reason
-                                               frameArray:frameArray];
+  
+  [[FIRCrashlytics crashlytics] recordExceptionModel:model];
 }
 
-- (void)throwException:(id)unused
+- (void)setEnabled:(NSNumber *)enabled
 {
-  [[Crashlytics sharedInstance] throwException];
+  [[FIRCrashlytics crashlytics] setCrashlyticsCollectionEnabled:enabled];
 }
 
 @end
