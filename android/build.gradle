@@ -6,5 +6,5 @@ repositories {
 dependencies {
 	// Add the module's library dependencies here.
 	// See:  https://developer.android.com/studio/build/dependencies
-	implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
+	implementation 'com.google.firebase:firebase-crashlytics:17.3.0'
 }
